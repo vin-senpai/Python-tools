@@ -3,4 +3,5 @@ print("yessir")
 print("lezzgo")
 
 this = input("enter your mffaname")
-hj
+
+mynameis
