@@ -1,1 +1,2 @@
-
+print("ngga")
+print("yessir")
