@@ -1,7 +1,7 @@
-print("ngga")
-print("yessir")
-print("lezzgo")
+#This is me.
 
-this = input("enter your mffaname")
+print("Hey what's your name?")
 
-mynameis
+name. = input("Enter your name:")
+
+print(f"Hey wassup {name}!")
