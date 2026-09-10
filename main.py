@@ -38,25 +38,41 @@ def unit_converter():
     for i in conversionlist:
         print(i)
     choice = int(input("Enter your choice: "))
+
     if choice == 1:
         print("Enter unit to convert from: ")
+
         for i in lenghsunit:
             print(i)
         funit = int(input(""))
-
+        print(lenghsunit[funit-1])
         print("Enter unit to convert to: ")
+
         for i in lenghsunit:
             print(i)
+
         sunit = int(input(""))
         value = float(input("Enter value to convert: "))
+        #Make the value into meters first(Base unit)
         value_in_meters = value * unit_value[lenghsunit[funit-1].strip('1234567890.').lower().strip()]
+        #make a function so that it will only use scientific notation once the value_in_Meters varible reaches upto 8 digits/or when converting 0.9cm to meters.
 
+        if(value_in_meters >= 0.000001):
+            format_value = f"{value_in_meters:.7f}".rstrip("0")
+        else:
+            format_value = value_in_meters
+            
+        
+        
+
+        #After converting to meters, we then convert it to a desired unit.
+        converted_value = value_in_meters / unit_value[lenghsunit[sunit-1].strip('1234567890.').lower().strip().rstrip("0")]
         
         print("\n" * 100)
-        print(f"value in meters is: {value_in_meters}")
+        print(f"value from {lenghsunit[funit-1].strip('1234567890.').lower().strip()} to {lenghsunit[sunit-1].strip("01")}: {converted_value:.7f}")
+        
         #print(f"Converting from {lenghsunit[funit-1].strip('12345678910.')} to {lenghsunit[sunit-1].strip('12345678910.')}") 
 
-        #Meter
 
 
             
@@ -64,5 +80,6 @@ def unit_converter():
         #print(f"{lenghsunit[funit-1].strip('12345678910.')} = {kilometer} km")
         
         
-    
-main_loop()
+
+while True:
+    main_loop()
