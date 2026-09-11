@@ -29,26 +29,24 @@ def unit_converter():
     #This is a value we will use to convert any unit into meter.
 
     standard_metric_unit = { 
+        "millimeter": 1,
+        "centimeter": 10,  
         "meter": 1000,
         "kilometer": 1000000,
-        "centimeter": 10,  
-        "millimeter": 1,
-        "micrometer": 0.000001,
-        "nanometer": 0.000000001,
-
+        "micrometer": 0.001,
+        "nanometer": 0.000001,
         "inches": 0.0393700787,
         "foot": 0.0032808399,
         "yards": 0.0010936133,
-        "miles": 6.213711922E-7
+        "miles": 0.0000006213711922
 
     }
 
-    imperial_metri_unit = {
+    imperial_metric_unit = {
         "inches": 1,
         "foot": 12,
         "yards": 36,
         "miles": 63360, 
-
         "millimeter": 25.4,
         "centimeter": 2.54,
         "meter": 0.0254,
@@ -82,46 +80,40 @@ def unit_converter():
         value = float(input("Enter value to convert: "))
 
         #Convert the value into the smallest unit first(Base unit) and then convert it into desired unit.
-        if(funit <= 5 and sunit <= 5): #Standard Metric system.
+        if(funit <= 6 and sunit <= 6): #Standard Metric system.
             value_in_mm = value * standard_metric_unit[unitlist[funit-1].strip('1234567890.').lower().strip()]
-            final_value = value_in_mm 
-        elif(funit > 5 and sunit > 5): #Imperial metric system.
-            value_in_inches = value * imperial_metri_unit[unitlist[funit-1].strip('123456789.').lower().strip()]
-            final_value = value_in_inches
+            final_value = value_in_mm / standard_metric_unit[unitlist[sunit-1].strip('1234567890.').lower().strip()]
+            print("i used metric")
+        elif(funit >= 7 and sunit >= 7): #Imperial metric system.
+            value_in_inches = value * imperial_metric_unit[unitlist[funit-1].strip('123456789.').lower().strip()]
+            final_value = value_in_inches / imperial_metric_unit[unitlist[sunit-1].strip('1234567890.').lower().strip()]
             print(f"{unitlist[funit-1].strip('1234567890.').lower().strip()} to inches is: {final_value}")
-            print(f"Inches to yards is: {value_in_inches / 36}")
-        #Inorder to convert from imperial to metric(or vice versa),we must first convert them into their lowest value and convert both lowest value to desired unit.
-        elif(funit <= 5 and sunit >= 6):
+            print("i used imperial")
+        #Inorder to convert from imperial to metric(or vice versa),we must first con    vert them into their lowest value and convert both lowest value to desired unit.
+        elif(funit <= 6 and sunit >= 7):
             value_in_mm = value * standard_metric_unit[unitlist[funit-1].strip('1234567890.').lower().strip()]
             value_in_inches = value_in_mm * standard_metric_unit[unitlist[sunit-1].strip('1234567890.').lower().strip()]
             final_value = value_in_inches   
-        elif(funit >= 6 and sunit <= 5):
-            value_in_inches = value * imperial_metri_unit[unitlist[funit-1].strip('123456789.').lower().strip()]
-            value_in_mm = value_in_inches * imperial_metri_unit[unitlist[sunit-1].strip('123456789.').lower().strip()]
+            print("std to imp")
+        elif(funit >= 7 and sunit <= 6):
+            value_in_inches = value *imperial_metric_unit[unitlist[funit-1].strip('123456789.').lower().strip()]
+            value_in_mm = value_in_inches *imperial_metric_unit[unitlist[sunit-1].strip('123456789.').lower().strip()]
             final_value = value_in_mm
+            print("imp to std")
         else:
+            final_value = value * standard_metric_unit[unitlist[sunit-1].strip('1234567890.').lower().strip()]
             print("ERROR wrong")
+            print("i used thiss")
+        
+        if(funit == 1 or sunit == 1):
+            formatted_c_value =  f"{final_value:.10f}".rstrip("0")
+            print("i formatted it")
+        else:
+            formatted_c_value =  f"{final_value:.10f}".rstrip("0")
+            print("i didn NOT formatted it")
            
-        
-        
         #make a function so that it will only use scientific notation once the value_in_mm varible reaches upto 8 digits/or when converting 0.9cm to meters.
 
-        if(final_value > 0.000001):
-            formatted_m_value = f"{final_value:.7f}".rstrip("0")
-        else:
-            formatted_m_value = final_value
-
-        if(final_value > 0.000001):
-            formatted_c_value = f"{final_value:.7f}".strip('.').rstrip("0")
-            print("yes it is")
-        elif(sunit == 0):
-            formatted_c_value = value_in_mm
-        else:
-            formatted_c_value = final_value
-            print("i used this value really")
-
-
-        os.system("cls")
         print(f"value from {unitlist[funit-1].strip('1234567890.').lower().strip()}({value}) to {unitlist[sunit-1].strip("01234567890.").lower().strip()}: {formatted_c_value}" )
         input("Press a Key to exit")
         os.system("cls")
