@@ -96,7 +96,7 @@ def unit_converter():
             final_value = value_in_inches   
             print("std to imp")
         elif(funit >= 7 and sunit <= 6):
-            value_in_inches = value *imperial_metric_unit[unitlist[funit-1].strip('123456789.').lower().strip()]
+            value_in_inches = value * imperial_metric_unit[unitlist[funit-1].strip('123456789.').lower().strip()]
             value_in_mm = value_in_inches *imperial_metric_unit[unitlist[sunit-1].strip('123456789.').lower().strip()]
             final_value = value_in_mm
             print("imp to std")
@@ -106,10 +106,10 @@ def unit_converter():
             print("i used thiss")
         
         if(funit == 1 or sunit == 1):
-            formatted_c_value =  f"{final_value:.10f}".rstrip("0")
+            formatted_c_value =  f"{final_value:,.10f}".rstrip("0")
             print("i formatted it")
         else:
-            formatted_c_value =  f"{final_value:.10f}".rstrip("0")
+            formatted_c_value =  f"{final_value:,.10f}".rstrip("0")
             print("i didn NOT formatted it")
            
         #make a function so that it will only use scientific notation once the value_in_mm varible reaches upto 8 digits/or when converting 0.9cm to meters.
