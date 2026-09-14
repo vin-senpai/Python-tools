@@ -1,6 +1,20 @@
 #Games to play.(pure cli only no pygame)
 import os
 
+
+def main():
+    games = ["1.Snake","2.TIC TAC TOE","3.Tetris","4.Exit"]
+    print("Choose a Game: ")
+    for i in games:
+        print(i)
+    choice = int(input(""))
+    if(choice == 2):
+        print("Welcome to tic tac toes!")
+        tictac()
+    else:
+        print("Invalid choice!")
+
+#Tic tac toe
 class tictac:
     #Initalize variables.
     def __init__(self):
@@ -115,8 +129,7 @@ class tictac:
 
             self.draw_grid()
 
-          
-            
+
 
 
     
