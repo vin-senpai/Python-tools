@@ -3,12 +3,28 @@ import os
 
 
 def main():
-    games = ["1.Snake","2.TIC TAC TOE","3.Tetris","4.Exit"]
+    
+    games = ["1.TIC TAC TOE"]
+    print(r""" 
+    __________________|      |____________________________________________
+     ,--.    ,--.          ,--.   ,--.
+    |oo  | _  \  `.       | oo | |  oo|
+o  o|~~  |(_) /   ;       | ~~ | |  ~~|o  o  o  o  o  o  o  o  o  o  o
+    |/\/\|   '._,'        |/\/\| |/\/\|
+__________________        ____________________________________________
+                  |      |
+_______  _______  __   __  _______  _______ 
+|       ||   _   ||  |_|  ||       ||       |
+|    ___||  |_|  ||       ||    ___||  _____|
+|   | __ |       ||       ||   |___ | |_____ 
+|   ||  ||       ||       ||    ___||_____  |
+|   |_| ||   _   || ||_|| ||   |___  _____| |
+|_______||__| |__||_|   |_||_______||_______|""")
     print("Choose a Game: ")
     for i in games:
         print(i)
     choice = int(input(""))
-    if(choice == 2):
+    if(choice == 1):
         print("Welcome to tic tac toes!")
         tictac()
     else:
@@ -111,8 +127,7 @@ class tictac:
     def mainloop(self):
         while not self.gameover == True:
             #Get the user input.
-
-            
+            self.draw_grid()
             self.check_grid()
             self.p1x = int(input("Enter Player 1 x position(1-3): "))
             self.p1y = int(input("Enter Player 1 y position(1-3): "))   
@@ -127,7 +142,7 @@ class tictac:
           
             self.grid[self.p2y-1][self.p2x-1] = 2
 
-            self.draw_grid()
+           
 
 
 
