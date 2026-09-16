@@ -5,7 +5,7 @@ from games_clean import main
 
 def main_loop():
     #Raw string
-    design = r"""",--------------------------===---.
+    #design = r"""",--------------------------===---.
 | ACT-1B                          |
 | ,----------------------------.  |         
 | |  Welcome to python toolbox  | |
