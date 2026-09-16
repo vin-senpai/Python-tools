@@ -2,6 +2,7 @@
 import os
 
 
+
 def main():
     
     games = ["1.TIC TAC TOE"]
@@ -34,9 +35,9 @@ _______  _______  __   __  _______  _______
 class tictac:
     #Initalize variables.
     def __init__(self):
-        self.grid = [[0,0,0],
-                    [0,0,0],
-                    [0,0,0]]
+        self.grid = [[2,1,1],
+                    [1,2,2],
+                    [2,1,0]]
         self.gameover = False
         self.mainloop()
 
@@ -116,7 +117,10 @@ class tictac:
                     print("Player 2 wins")
                 self.gameover = True
                 os._exit(0)
-                     
+            #Game over if there's no more move.
+            elif(self.grid[0][0] != 0 and self.grid[0][1] != 0 and self.grid[0][2] != 0 and self.grid[1][0] != 0 and self.grid[1][1] != 0 and self.grid[1][2] != 0 and self.grid[2][0] != 0 and self.grid[2][1] != 0 and self.grid[2][2] != 0):
+                print("TIE")
+                exit()
                      
                  
             
@@ -129,18 +133,34 @@ class tictac:
             #Get the user input.
             self.draw_grid()
             self.check_grid()
-            self.p1x = int(input("Enter Player 1 x position(1-3): "))
-            self.p1y = int(input("Enter Player 1 y position(1-3): "))   
-            
 
-            self.grid[self.p1y-1][self.p1x-1] = 1
+            self.p1x = int(input("Enter Player 1(0) x position(1-3): "))
+            self.p1y = int(input("Enter Player 1(0) y position(1-3): "))
+
+            if self.p1x <= 3 and self.p1y <= 3:
+                if self.grid[self.p1y-1][self.p1x-1] == 0:
+                    self.grid[self.p1y-1][self.p1x-1] = 1
+                else:
+                    print("Position already occupied!")
+            else:
+                print("INVALID OUTPUT!")
+
 
             self.draw_grid()
             self.check_grid()
-            self.p2x = int(input("Enter Player 2 x position(1-3): "))
-            self.p2y = int(input("Enter Player 2 y position(1-3): "))
-          
-            self.grid[self.p2y-1][self.p2x-1] = 2
+
+            self.p2x = int(input("Enter Player 2(X) x position(1-3): "))
+            self.p2y = int(input("Enter Player 2(X) y position(1-3): "))
+
+            if self.p2x <= 3 and self.p2y <= 3:
+                if self.grid[self.p2y - 1][self.p2x - 1] == 0:
+                    self.grid[self.p2y - 1][self.p2x - 1] = 2
+                else:
+                    print("Position already occupied!")
+            else:
+                print("INVALID OUTPUT!")
+
+
 
            
 
@@ -148,5 +168,4 @@ class tictac:
 
 
     
-
 
